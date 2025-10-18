@@ -1,4 +1,19 @@
 {
+  "name": "@repo/workspace",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rimraf **/dist **/*.tsbuildinfo || true",
+    "typecheck": "tsc -b --pretty false",
+    "test": "echo \"No root tests. Run package-level tests.\""
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "rimraf": "^5.0.5"
   "name": "monorepo",
   "private": true,
   "version": "0.0.0",

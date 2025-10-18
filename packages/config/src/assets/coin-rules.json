@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "actions": {
+    "signup": { "fixed": 100 },
+    "purchase": { "perUnit": 1, "unit": "USD", "multiplier": 1 },
+    "refer_friend": { "fixed": 250 },
+    "daily_login": { "fixed": 10 }
+  },
+  "caps": {
+    "daily": 1000,
+    "monthly": 5000
+  }
+}

@@ -1,0 +1,106 @@
+openapi: 3.0.3
+info:
+  title: Repo Core API
+  version: 0.0.1
+paths: {}
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id: { type: string }
+        email: { type: string, format: email }
+        name: { type: string }
+        role:
+          type: string
+          enum: [ADMIN, USER, DRIVER]
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+      required: [id, email, role, createdAt]
+    Item:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        description: { type: string }
+        price: { type: number, minimum: 0 }
+        currency: { type: string, minLength: 3, maxLength: 3 }
+        category:
+          type: string
+          enum: [PHYSICAL, DIGITAL, SERVICE]
+        metadata:
+          type: object
+          additionalProperties: true
+      required: [id, name, price, currency, category]
+    OrderItem:
+      type: object
+      properties:
+        itemId: { type: string }
+        quantity: { type: integer, minimum: 1 }
+        unitPrice: { type: number, minimum: 0 }
+        currency: { type: string, minLength: 3, maxLength: 3 }
+      required: [itemId, quantity, unitPrice, currency]
+    Order:
+      type: object
+      properties:
+        id: { type: string }
+        userId: { type: string }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/OrderItem' }
+        subtotal: { type: number, minimum: 0 }
+        tax: { type: number, minimum: 0 }
+        total: { type: number, minimum: 0 }
+        status:
+          type: string
+          enum: [PENDING, CONFIRMED, PAID, PROCESSING, SHIPPED, DELIVERED, CANCELLED, REFUNDED]
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+      required: [id, userId, items, subtotal, total, status, createdAt]
+    Location:
+      type: object
+      properties:
+        lat: { type: number }
+        lng: { type: number }
+      required: [lat, lng]
+    Drive:
+      type: object
+      properties:
+        id: { type: string }
+        orderId: { type: string }
+        driverId: { type: string }
+        status:
+          type: string
+          enum: [CREATED, EN_ROUTE, COMPLETED, CANCELLED]
+        origin: { $ref: '#/components/schemas/Location' }
+        destination: { $ref: '#/components/schemas/Location' }
+        startedAt: { type: string, format: date-time }
+        completedAt: { type: string, format: date-time }
+      required: [id, status, origin, destination]
+    Reward:
+      type: object
+      properties:
+        id: { type: string }
+        userId: { type: string }
+        type:
+          type: string
+          enum: [POINTS, VOUCHER, DISCOUNT]
+        amount: { type: number, minimum: 0 }
+        issuedAt: { type: string, format: date-time }
+        expiresAt: { type: string, format: date-time }
+        metadata:
+          type: object
+          additionalProperties: true
+      required: [id, userId, type, amount, issuedAt]
+    Wallet:
+      type: object
+      properties:
+        id: { type: string }
+        userId: { type: string }
+        type:
+          type: string
+          enum: [FIAT, CRYPTO]
+        balance: { type: number }
+        currency: { type: string, minLength: 3, maxLength: 3 }
+        updatedAt: { type: string, format: date-time }
+      required: [id, userId, type, balance, currency]

@@ -1,5 +1,14 @@
 # Dependencies
 node_modules/
+
+# Build outputs
+**/dist/
+**/build/
+
+# TypeScript
+**/*.tsbuildinfo
+
+# Logs
 .pnpm-store/
 
 # Builds
@@ -29,6 +38,13 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Editor directories and files
+.vscode/
+.idea/
+.DS_Store
+
+# Turborepo cache (if used)
+.turbo/
 # Python
 __pycache__/
 .venv/
