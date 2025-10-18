@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "classes": {
+    "PHYSICAL": ["ELECTRONICS", "APPAREL", "HOME"],
+    "DIGITAL": ["SOFTWARE", "EBOOK", "SUBSCRIPTION"],
+    "SERVICE": ["DELIVERY", "CONSULTING"]
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "flags": {
+    "newCheckout": {
+      "enabled": false,
+      "description": "Enable the new checkout flow"
+    },
+    "betaRewards": {
+      "enabled": true,
+      "description": "Enable beta rewards program"
+    },
+    "nativeAppV2": {
+      "enabled": false,
+      "description": "Toggle for v2 native app features"
+    }
+  }
+}
