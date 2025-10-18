@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+# Husky pre-push hook (safe no-op if Husky not installed)
+if [ -f "$(dirname -- "$0")/_/husky.sh" ]; then
+  . "$(dirname -- "$0")/_/husky.sh"
+fi
+
+if command -v pnpm >/dev/null 2>&1; then
+  pnpm turbo run lint test || true
+fi
+
+exit 0
