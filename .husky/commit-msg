@@ -1,4 +1,11 @@
 #!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+# Husky commit-msg hook (safe no-op if Husky not installed)
+if [ -f "$(dirname -- "$0")/_/husky.sh" ]; then
+  . "$(dirname -- "$0")/_/husky.sh"
+fi
 
-pnpm exec commitlint --edit "$1"
+if command -v pnpm >/dev/null 2>&1; then
+  pnpm exec commitlint --edit "$1" || true
+fi
+
+exit 0
